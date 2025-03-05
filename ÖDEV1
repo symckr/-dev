@@ -1,0 +1,31 @@
+--ÇALIŞANLARIN FIRST NAME, LAST NAME, SALARY BİLGİLERİNİN GÖRÜNTÜLENMESİ
+select firstname, lastname, salary
+from employees;
+
+--KOMUT TEKRARI ÖNLEME
+select distinct departmentid
+from employees;
+
+--BELİRLİ BİR DEPARTMANA AİT ÇALIŞANLARIN LİSTELENMESİ
+--IT DEPARTMANINDAKİLERİN BİLGİLERİNİN GÖRÜNTÜLENMESİ
+select * 
+from employees
+join departments on employees.departmentid = departments.departmentid
+where departmentname= 'IT' ;
+
+--ÇALIŞANLARI MAAŞINA SIRALAMA
+select * from employees
+order by salary desc;
+
+--ÇALIŞANLARIN FİRSTNAME VE LASTNAME ALANLARINI BİRLEŞTİRİP TAM ADLARINI İÇEREN YENİ BİR KOLON OLUŞTURMA
+select (firstname|| ' ' || lastname) as fullname
+from employees;
+
+
+
+
+
+
+
+
+
