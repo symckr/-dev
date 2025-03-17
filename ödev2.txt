@@ -1,0 +1,20 @@
+--invoice tablosundaki tüm değerlerde null olan kayıtları sayısını gösterir
+-- null row sayısı 209
+select count(*)
+from invoice
+where invoice_id is null or customer_id is null or invoice_date is null or billing_address is null or billing_city is null or billing_state is null or billing_state is null or billing_country is null or billingpostal_code is null or total is null;
+
+
+--total değerlerin iki katını görüp eski versiyonla karşılaştır.
+--tablonun yeni versiyonunu büyükten küçüğe sırala
+select *, total as "eski total", (total*2) as "yeni total" 
+from invoice
+order by "yeni total" desc;
+
+
+-- adres kolonundaki verileri soldan 3, sağdan 4 karakter alarak birleştir ve "açık adres" olarak yaz
+-- yeni açık adresi 2013 yılı ve 8. aya göre filtrele
+select left(billing_address, 3) || right(billing_address,4) as "açık adres"
+from invoice
+where extract(year from invoice_date)=2013 and 
+extract(month from invoice_date)=8;
