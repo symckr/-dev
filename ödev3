@@ -1,0 +1,55 @@
+--usa ülkesine ait 2009 kayıtlarının olduğu tüm faturalar toplamını bulan sorgu
+select sum(total) as fatura_toplam
+from invoice
+where  billing_country='USA' and (invoice_date between '2009-01-01' and '2009-12-31') ; 
+--usa ülkesine ait 2009 kayıtlarının olduğu tüm faturalar toplamını bulan sorgu
+select sum(total) as fatura_toplam
+from invoice
+where  billing_country='USA' and year(invoice_date)=2009 ; 
+
+
+-- tüm parça(track) bilgilerini, bu parçaların ait olduğu playlisttrack ve playlist tablolarıyla birleştiren sorgu
+select t.track_id, t.name, t.album_id, t.mediatype_id, t.genre_id, t.composer, t.milliseconds, t.bytes, t.unitprice,
+pt.playlist_id, p.name
+from track t
+left join playlisttrack pt on t.track_id = pt.track_id
+left join playlist p on pt.playlist_id = p.playlist_id ;
+
+--"let there be rock" albüme ait tüm parçaları(track) listeleyen sanatçı bilgisini de içeren sorgu
+--sonuçlar parça süresine(milliseconds) göre büyükten küçüğe göre sırala
+select t.track_id, t.name, t.album_id, t.mediatype_id, t.genre_id, t.composer, t.milliseconds, t.bytes, t.unitprice,
+a.artist_id, a.name, al.album_id, al.title, al.album_id
+from track t
+left join album al on t.album_id = al.album_id
+left join artist a on al.artist_id = a.artist_id
+where title = 'Let There Be Rock' 
+order by milliseconds desc ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
